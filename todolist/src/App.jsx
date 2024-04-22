@@ -1,19 +1,49 @@
-import { useState } from "react";
+import { useState } from 'react';
 export function App() {
-  let [state, setState] = useState(0);
-  function handleCount() {
-    // 官網有針對這兩種寫法作介紹，較推薦使用第一種
-    setState((prev)=>prev+1); //step 1
-    // setState(state +1); //step 2
+	const [todoList, setTodoList] = useState(['hello', 'test']);
+	const [state, setState] = useState(0);
 
-  }
-  // UI // return user interface
-  return (
-    <>
-      {state}
-      <button onClick={handleCount}> +++ </button>
-    </>
-  )
+	function handleCount(e) {
+		//# 此處收到的e 會是event 事件資料
+		setState(e.target.value);
+	}
+	function handelSubmit() {
+		// const newList = [...todoList, state];
+
+		// setTodoList(newList);
+		setTodoList((currentTodo) => {
+			return [...currentTodo, state];
+		});
+	}
+
+	return (
+		<>
+			<div
+				style={{
+					margin: '4rem',
+					display: 'flex',
+					alignItem: 'center',
+					flexDirection: 'column',
+				}}>
+				<input
+					type="text"
+					onChange={handleCount}
+					style={{ marginBottom: '10px' }}
+				/>
+				<button onClick={handelSubmit}>submit</button>
+				{todoList.map((item, index) => (
+					<div
+						style={{ display: 'flex' }}
+						key={item}>
+						<input type="checkbox" />
+						<div>
+							#{index + 1}-{item}
+						</div>
+					</div>
+				))}
+			</div>
+		</>
+	);
 }
 
 // export default App
