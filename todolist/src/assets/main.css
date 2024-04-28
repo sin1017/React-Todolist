@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *,
 *::after,
 ::before {
@@ -19,4 +23,9 @@ button:hover {
 	color: #fff3bd;
 	border-color: rgb(35, 163, 163);
 	box-shadow: 0px 0px 0px black;
+}
+
+input {
+	border: 1px solid rgb(71, 71, 71);
+	border-radius: 5px;
 }

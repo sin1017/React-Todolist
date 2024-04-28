@@ -6,15 +6,19 @@ export function App() {
 		{ text: '1fffffff23', checked: false },
 	]);
 	const [inputText, setInputText] = useState('');
+
 	function handleChecked(index) {
 		const changeCheckedList = [...todoList];
 		changeCheckedList[index].checked = !changeCheckedList[index].checked;
 		setTodoList(changeCheckedList);
 	}
+
 	function handleChangeInputText(e) {
 		setInputText(e.target.value);
 	}
+
 	function handleUpdateTodoList() {
+		if (!inputText) return alert('不可空白');
 		const newTodoList = [...todoList, { text: inputText, checked: false }];
 		setTodoList(newTodoList);
 		setInputText('');
